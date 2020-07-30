@@ -1,0 +1,6 @@
+*
+
+!.npmignore
+!package.json
+!src/*
+!img/*
