@@ -16,6 +16,7 @@ const notify = async (title = 'Notification', body = 'Hello', data = {}, trigger
     for (let _trigger of trigger) {
         try {
             await Notifications.scheduleNotificationAsync({
+                // identifier: title + body + JSON.stringify(data) + JSON.stringify(trigger),
                 content: {
                     title: title,
                     body: body,
@@ -120,7 +121,7 @@ export const cronTrigger = (cron) => {
         const hour = __hour == '*' ? now.hour().toString() : __hour
         const dom = __dom == '*' ? now.date().toString() : __dom
         const month = __month == '*' ? now.month().toString() : __month.split(',').map(m => m - 1).join(',')
-        const dow = __dow 
+        const dow = __dow
 
         for (let _minute of minute.split(',')) {
             for (let _hour of hour.split(',')) {
@@ -135,7 +136,7 @@ export const cronTrigger = (cron) => {
                                 hour: __hour != '*' ? runtime.hour() : undefined,
                                 day: __dom != '*' ? runtime.date() : undefined,
                                 month: __month != '*' ? runtime.month() : undefined,
-                                weekday: __dow != '*' ? runtime.day() : undefined
+                                weekday: __dow != '*' ? Number(_dow) : undefined
                             })
                         }
                     }

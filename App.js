@@ -8,13 +8,20 @@ export default function App() {
     console.log('onNotification', notification)
   })
 
-  clearScheduledNotifications().then(() => {
-    notify('mytitle', 'mybody', { myIntput: 'myData' }, cronTrigger('* * * * *')).then(() => {
-      getScheduledNotifications().then((notifications) => {
-        console.log('notifications', notifications)
-      })
-    })
-  })
+  clearScheduledNotifications()
+
+  // clearScheduledNotifications().then(() => {
+  //   notify('mytitle', 'mybody', { myIntput: 'myData' }, cronTrigger('0 * * * *')).then(() => {
+  //     getScheduledNotifications().then((notifications) => {
+  //       console.log('notifications', notifications)
+  //     })
+  //   })
+  //   notify('mytitle', 'mybody', { myIntput: 'myData' }, cronTrigger('15 * * * *')).then(() => {
+  //     getScheduledNotifications().then((notifications) => {
+  //       console.log('notifications', notifications)
+  //     })
+  //   })
+  // })
 
   return (
     <View style={styles.container}>

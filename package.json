@@ -1,5 +1,5 @@
 {
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -23,10 +23,10 @@
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0"
   },
-  "private": true,
+  "private": false,
   "name": "react-native-hook-use-notification",
   "description": "`react-native-hook-use-notification` is a hook you can use to use notifications. It uses the `expo-notifications` package.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dameyerdave/react-native-hook-use-notification.git"
