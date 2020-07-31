@@ -136,7 +136,7 @@ export const cronTrigger = (cron) => {
                                 hour: __hour != '*' ? runtime.hour() : undefined,
                                 day: __dom != '*' ? runtime.date() : undefined,
                                 month: __month != '*' ? runtime.month() : undefined,
-                                weekday: __dow != '*' ? Number(_dow) : undefined
+                                weekday: __dow != '*' ? Number(_dow) + 1 : undefined
                             })
                         }
                     }
