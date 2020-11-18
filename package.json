@@ -8,25 +8,25 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "moment": "~2.27.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.6",
+    "babel-preset-expo": "~8.1.0",
     "@unimodules/core": "~5.3.0",
     "expo": "~38.0.8",
     "expo-notifications": "~0.3.3",
     "expo-permissions": "~9.0.1",
     "expo-status-bar": "^1.0.2",
-    "moment": "^2.27.0",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
     "react-native-web": "~0.11.7"
   },
-  "devDependencies": {
-    "@babel/core": "^7.8.6",
-    "babel-preset-expo": "~8.1.0"
-  },
   "private": false,
   "name": "react-native-hook-use-notification",
   "description": "`react-native-hook-use-notification` is a hook you can use to use notifications. It uses the `expo-notifications` package.",
-  "version": "1.0.4",
+  "version": "1.0.19",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dameyerdave/react-native-hook-use-notification.git"
