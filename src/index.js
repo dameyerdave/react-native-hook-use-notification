@@ -1,18 +1,24 @@
 import { useEffect } from 'react'
-import * as Permissions from 'expo-permissions';
 import * as Notifications from 'expo-notifications'
 import { Alert } from 'react-native'
 import moment from 'moment'
 
 const askForNotificationPermission = async () => {
   try {
-    const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    if (status !== 'granted') {
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      return (status === 'granted')
+    const settings = await Notifications.getPermissionsAsync()
+    if (!settings.granted) {
+      notificationPermissions = await Notifications.requestPermissionsAsync({
+        ios: {
+          allowAlert: true,
+          allowBadge: true,
+          allowSound: true,
+          allowAnnouncements: true
+        }
+      })
+      return notificationPermissions.ios.allowsAlert && notificationPermissions.allowsDisplayInNotificationCenter
     }
     else {
-      return true
+      return settings.granted
     }
   } catch (err) {
     console.log(err)
@@ -75,6 +81,7 @@ export const useNotification = (onNotification, handler = async () => ({
   shouldPlaySound: true,
   shouldSetBadge: false,
 })) => {
+  // const [permission, askForPermission] = Permissions.usePermissions(Permissions.NOTIFICATIONS, { ask: true });
   useEffect(() => {
     askForNotificationPermission()
       .then(granted => {
@@ -97,7 +104,7 @@ export const useNotification = (onNotification, handler = async () => ({
           Alert.alert('Notifications', 'Notifications are not allowed. Please allow notifications to make the app work properly.', [{
             text: "OK",
             style: "cancel",
-          },])
+          }])
         }
       }).catch((err) => {
         console.error(err)
