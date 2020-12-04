@@ -15,13 +15,13 @@ const askForNotificationPermission = async () => {
           allowAnnouncements: true
         }
       })
-      return notificationPermissions.ios.allowsAlert && notificationPermissions.allowsDisplayInNotificationCenter
+      return notificationPermissions.ios.allowsAlert && notificationPermissions.ios.allowsDisplayInNotificationCenter
     }
     else {
       return settings.granted
     }
   } catch (err) {
-    console.log(err)
+    console.error(err)
     return false
   }
 }
@@ -54,7 +54,7 @@ const notify = async (identifier = null, title = 'Notification', body = 'Hello',
         trigger: _trigger,
       })
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 }
@@ -63,7 +63,7 @@ export const getScheduledNotifications = async () => {
   try {
     return Notifications.getAllScheduledNotificationsAsync()
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 
 }
@@ -72,7 +72,7 @@ export const clearScheduledNotifications = async () => {
   try {
     await Notifications.cancelAllScheduledNotificationsAsync()
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
@@ -86,17 +86,17 @@ export const useNotification = (onNotification, handler = async () => ({
     askForNotificationPermission()
       .then(granted => {
         if (granted) {
-          const notificationReceivedListener = Notifications.addNotificationReceivedListener(notification => {
-            console.log('NotificationReceived', notification);
-          })
+          // const notificationReceivedListener = Notifications.addNotificationReceivedListener(notification => {
+          //   console.log('NotificationReceived', notification);
+          // })
           const notificationResponseReceivedListener = Notifications.addNotificationResponseReceivedListener(response => {
-            console.log('NotificationResponded', response);
+            // console.log('NotificationResponded', response);
             let data = response.notification.request.content.data
             delete data.experienceId
             onNotification(data)
           })
           return () => {
-            console.log('remove notification listeners')
+            // console.log('remove notification listeners')
             notificationReceivedListener.remove()
             notificationResponseReceivedListener.remove()
           }
@@ -177,7 +177,7 @@ export const cronTrigger = (cron) => {
       }
     }
   } else {
-    console.log('Error in cron_definition of schedule ' + schedule.description + ' (' + schedule.cron_definition + ')')
+    console.error('Error in cron_definition of schedule ' + schedule.description + ' (' + schedule.cron_definition + ')')
   }
   return triggers
 }
