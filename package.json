@@ -26,7 +26,7 @@
   "private": false,
   "name": "react-native-hook-use-notification",
   "description": "`react-native-hook-use-notification` is a hook you can use to use notifications. It uses the `expo-notifications` package.",
-  "version": "1.0.37",
+  "version": "1.0.42",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dameyerdave/react-native-hook-use-notification.git"

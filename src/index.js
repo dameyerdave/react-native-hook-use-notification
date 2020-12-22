@@ -86,17 +86,21 @@ export const useNotification = (onNotification, handler = async () => ({
     askForNotificationPermission()
       .then(granted => {
         if (granted) {
+          //////////
+          // This is only called if the app is in foreground same as the handler function in setNotificationHandler
+          //////////
           // const notificationReceivedListener = Notifications.addNotificationReceivedListener(notification => {
           //   console.log('NotificationReceived', notification);
           // })
+          // This is called 
           const notificationResponseReceivedListener = Notifications.addNotificationResponseReceivedListener(response => {
             // console.log('NotificationResponded', response);
             let data = response.notification.request.content.data
             delete data.experienceId
-            onNotification(data)
+            onNotification(data, response.notification)
           })
           return () => {
-            // console.log('remove notification listeners')
+            console.log('remove notification listeners')
             notificationReceivedListener.remove()
             notificationResponseReceivedListener.remove()
           }
