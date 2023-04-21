@@ -8,7 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "moment": "~2.27.0"
+    "moment": "~2.29.4"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
